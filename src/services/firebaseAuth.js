@@ -4,6 +4,7 @@ export const authMethods = {
 	signIn: async () => {
 		try {
 			const provider = new firebase.auth.GoogleAuthProvider();
+			provider.addScope('profile');
 
 			await firebase
 				.auth()
@@ -20,7 +21,11 @@ export const authMethods = {
 							if (snapshot.exists) {
 								console.log(snapshot);
 							} else {
-								userRef.doc(uid).set({ name: displayName, avatar: photoURL });
+								userRef.doc(uid).set({
+									name: displayName,
+									avatar: photoURL,
+									createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+								});
 							}
 						});
 				})

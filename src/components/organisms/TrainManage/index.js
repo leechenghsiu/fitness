@@ -7,7 +7,7 @@ import styles from './styles.module.scss';
 const TrainManage = ({ go }) => (
 	<div className={styles.wrapper}>
 		<ActionBar go={go} left />
-		<h1>Train Manage</h1>
+		<h1>Train Management</h1>
 	</div>
 );
 

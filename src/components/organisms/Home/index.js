@@ -48,8 +48,8 @@ const Home = () => {
 		<animated.div {...bind()} className={styles.wrapper} key={Math.random()} style={{ display, x }}>
 			<animated.div style={{ scale, borderRadius }}>
 				{i === 0 && <UserInfo isLogin={isLogin} go={go} />}
-				{i === 1 && <DietManage go={go} />}
-				{i === 2 && <TrainManage go={go} />}
+				{i === 1 && <DietManage isLogin={isLogin} go={go} />}
+				{i === 2 && <TrainManage isLogin={isLogin} go={go} />}
 			</animated.div>
 		</animated.div>
 	));
