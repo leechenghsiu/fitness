@@ -1,0 +1,56 @@
+@import 'styles/color.scss';
+@import 'styles/media.scss';
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+
+	& .statusItem {
+		display: flex;
+		flex-direction: column;
+		margin-right: -24px;
+		margin-bottom: 16px;
+		border-bottom: 1px solid #bbc5c9;
+		position: relative;
+
+		& > div {
+			display: flex;
+			align-items: center;
+			margin-bottom: 4px;
+
+			& > p {
+				font-family: 'Montserrat', sans-serif;
+				font-size: 14px;
+
+				&:first-child {
+					font-weight: 600;
+					margin-right: 8px;
+					color: #8d898f;
+				}
+
+				&:nth-child(2) {
+					font-weight: 300;
+					font-style: italic;
+					margin-right: 4px;
+					border-radius: 4px;
+					padding: 2px 8px;
+					color: #5b5858;
+				}
+			}
+		}
+
+		& > p {
+			font-family: 'Montserrat', sans-serif;
+			font-weight: 600;
+			margin-bottom: 8px;
+		}
+
+		& .editIcon {
+			position: absolute;
+			font-size: 20px;
+			color: #8d898f;
+			right: 24px;
+			top: 4px;
+		}
+	}
+}

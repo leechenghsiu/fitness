@@ -76,13 +76,16 @@
 		flex-direction: column;
 		height: 100%;
 
-		& .unLoginText {
+		& .statusText {
 			font-family: 'Montserrat', sans-serif;
 			font-size: 16px;
-			text-align: center;
+			font-style: italic;
+			align-self: center;
 			margin-top: 16px;
 			text-decoration: underline;
 			color: #8d898f;
+			border: none;
+			background-color: transparent;
 		}
 
 		& .statusItem {

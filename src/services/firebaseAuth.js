@@ -18,9 +18,7 @@ export const authMethods = {
 						.doc(uid)
 						.get()
 						.then(snapshot => {
-							if (snapshot.exists) {
-								console.log(snapshot);
-							} else {
+							if (!snapshot.exists) {
 								userRef.doc(uid).set({
 									name: displayName,
 									avatar: photoURL,

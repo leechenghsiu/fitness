@@ -1,0 +1,62 @@
+@import 'styles/color.scss';
+@import 'styles/media.scss';
+
+.selectedContent {
+	max-height: 0;
+	height: 100%;
+	overflow: hidden;
+	transition: all 0.3s;
+	opacity: 0;
+
+	& .tagsRow {
+		display: flex;
+
+		& > div {
+			display: flex;
+			align-items: flex-start;
+			flex-wrap: wrap;
+		}
+
+		& .tag {
+			display: flex;
+			align-items: center;
+			margin-bottom: 4px;
+			min-height: 22px;
+
+			&:last-child {
+				margin-bottom: 16px;
+			}
+
+			& > span {
+				white-space: nowrap;
+				font-family: 'Montserrat', sans-serif;
+				color: #5b5858;
+			}
+		}
+	}
+
+	& .input {
+		background-color: rgba(255, 255, 255, 0.3);
+		border-radius: 4px;
+		padding: 4px;
+		color: #5b5858;
+
+		&::placeholder {
+			color: #878787;
+		}
+	}
+
+	& .plusTag {
+		font-family: 'Montserrat', sans-serif;
+		font-size: 14px;
+		color: #5b5858;
+		border: 0.5px dashed #878787;
+		line-height: 28px;
+	}
+}
+
+.visible {
+	max-height: 150px;
+	padding-bottom: 40px;
+	opacity: 1;
+}

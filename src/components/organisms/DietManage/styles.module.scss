@@ -4,12 +4,106 @@
 .wrapper {
 	display: flex;
 	flex-direction: column;
+	height: 100%;
 	padding: 32px 8px;
+	position: relative;
 
 	& > h1 {
 		font-family: 'Montserrat', sans-serif;
 		font-weight: 700;
 		font-size: 28px;
 		color: $black;
+		margin-bottom: 16px;
+	}
+
+	& .content {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+
+		& .statusText {
+			font-family: 'Montserrat', sans-serif;
+			font-size: 16px;
+			font-style: italic;
+			align-self: center;
+			margin-top: 32px;
+			text-decoration: underline;
+			color: #8d898f;
+			border: none;
+			background-color: transparent;
+		}
+
+		& .addWrapper {
+			display: flex;
+			flex-direction: column;
+			margin-top: 36px;
+			position: relative;
+
+			& .tagsWrapper {
+				display: flex;
+				flex-direction: column;
+				opacity: 0;
+				background-color: white;
+				border-radius: 16px;
+				padding: 16px;
+				box-shadow: 0px 8px 60px -30px rgba(77, 77, 77, 0.3);
+				transition: all 0.3s;
+				max-height: 0;
+
+				& .typeSelect {
+					margin-bottom: 16px;
+
+					& > label {
+						flex: 1;
+						padding: 0 8px;
+
+						& span {
+							font-family: 'Montserrat', sans-serif;
+							font-weight: 400;
+						}
+					}
+				}
+			}
+
+			& .show {
+				opacity: 1;
+				margin-bottom: 24px;
+				max-height: 150px;
+			}
+
+			& .addRecord {
+				display: flex;
+				align-self: center;
+				align-items: center;
+				justify-content: center;
+				border: none;
+				border-radius: 12px;
+				background-color: $black;
+				min-height: 40px;
+				width: 50%;
+
+				& > span {
+					color: white;
+					font-family: 'Montserrat', sans-serif;
+					font-weight: 400;
+					font-size: 14px;
+				}
+			}
+
+			& .close {
+				display: flex;
+				align-self: center;
+				align-items: center;
+				justify-content: center;
+				border: none;
+				border-radius: 12px;
+				background-color: $black-grey;
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				min-height: 40px;
+				width: 40px;
+			}
+		}
 	}
 }
