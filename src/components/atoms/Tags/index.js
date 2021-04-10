@@ -6,43 +6,32 @@ import { PlusOutlined } from '@ant-design/icons';
 
 import styles from './styles.module.scss';
 
-const Tags = ({ visible, defaultTags = [] }) => {
+const Tags = ({ visible, tags, setTags, isWeight = false }) => {
 	const inputRef = useRef();
-	const [selectedMeal, setSelectedMeal] = useState({
-		tags: [],
-		inputVisible: false,
-		inputValue: '',
-	});
+	const [inputVisible, setInputVisible] = useState(false);
+
 	const handleClose = removedTag => {
-		const tags = selectedMeal.tags.filter(tag => tag !== removedTag);
-		setSelectedMeal({ ...selectedMeal, tags });
-	};
-	const showInput = () => {
-		setSelectedMeal({ ...selectedMeal, inputVisible: true });
+		const newList = tags.list.filter(li => li !== removedTag);
+		setTags({ ...tags, list: newList });
 	};
 	const handleInputChange = e => {
-		setSelectedMeal({ ...selectedMeal, inputValue: e.target.value });
+		setTags({ ...tags, inputValue: e.target.value });
 	};
 	const handleInputConfirm = () => {
-		const { inputValue } = selectedMeal;
-		let { tags } = selectedMeal;
-		if (inputValue && tags.indexOf(inputValue) === -1) {
-			tags = [...tags, inputValue];
+		const { inputValue } = tags;
+		let { list } = tags;
+		if (inputValue && list.indexOf(inputValue) === -1) {
+			list = [...list, inputValue];
 		}
-		setSelectedMeal({ ...selectedMeal, tags, inputVisible: false, inputValue: '' });
+		setTags({ ...tags, list, inputValue: '' });
+		setInputVisible(false);
 	};
 
 	useEffect(() => {
-		if (selectedMeal.inputVisible) {
+		if (inputVisible) {
 			inputRef.current.focus();
 		}
-	}, [selectedMeal.inputVisible]);
-
-	useEffect(() => {
-		if (visible) {
-			setSelectedMeal({ ...selectedMeal, tags: defaultTags });
-		}
-	}, [visible]);
+	}, [inputVisible]);
 
 	return (
 		<div className={classnames(styles.selectedContent, visible && styles.visible)}>
@@ -60,7 +49,7 @@ const Tags = ({ visible, defaultTags = [] }) => {
 					leave={{ opacity: 0, width: 0, scale: 0, duration: 200 }}
 					appear={false}
 				>
-					{selectedMeal.tags.map(tag => (
+					{tags.list.map(tag => (
 						<div className={styles.tag} key={tag}>
 							<Tag
 								closable
@@ -75,22 +64,22 @@ const Tags = ({ visible, defaultTags = [] }) => {
 					))}
 				</TweenOneGroup>
 			</div>
-			{selectedMeal.inputVisible && (
+			{inputVisible && (
 				<Input
 					ref={inputRef}
 					size="small"
 					className={styles.input}
-					value={selectedMeal.inputValue}
+					value={tags.inputValue}
 					onChange={handleInputChange}
 					onBlur={handleInputConfirm}
 					onPressEnter={handleInputConfirm}
-					placeholder="what did you eat?"
+					placeholder={isWeight ? 'what was your weight?' : 'what did you eat?'}
 					bordered={false}
 				/>
 			)}
-			{!selectedMeal.inputVisible && (
-				<Tag onClick={showInput} className={styles.plusTag}>
-					<PlusOutlined /> new meal
+			{!inputVisible && (
+				<Tag onClick={() => setInputVisible(true)} className={styles.plusTag}>
+					<PlusOutlined /> {isWeight ? 'new weight' : 'new meal'}
 				</Tag>
 			)}
 		</div>

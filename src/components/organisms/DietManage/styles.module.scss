@@ -33,22 +33,53 @@
 			background-color: transparent;
 		}
 
+		& .addRecord {
+			display: flex;
+			align-self: center;
+			align-items: center;
+			justify-content: center;
+			border: none;
+			border-radius: 12px;
+			background-color: $black;
+			min-height: 40px;
+			width: 50%;
+			margin-top: 40px;
+
+			& > span {
+				color: white;
+				font-family: 'Montserrat', sans-serif;
+				font-weight: 400;
+				font-size: 14px;
+			}
+		}
+
 		& .addWrapper {
 			display: flex;
 			flex-direction: column;
-			margin-top: 36px;
-			position: relative;
+			position: fixed;
+			opacity: 0;
+			transform: translate(-50%, 50%);
+			left: 50%;
+			z-index: -1;
+			min-width: 320px;
+			transition: all 0.3s;
 
 			& .tagsWrapper {
 				display: flex;
 				flex-direction: column;
-				opacity: 0;
 				background-color: white;
 				border-radius: 16px;
 				padding: 16px;
 				box-shadow: 0px 8px 60px -30px rgba(77, 77, 77, 0.3);
-				transition: all 0.3s;
-				max-height: 0;
+				margin-bottom: 24px;
+
+				& > h3 {
+					font-family: 'Montserrat', sans-serif;
+					font-weight: 700;
+					font-size: 24px;
+					color: $black;
+					margin-bottom: 12px;
+				}
 
 				& .typeSelect {
 					margin-bottom: 16px;
@@ -65,45 +96,66 @@
 				}
 			}
 
-			& .show {
-				opacity: 1;
-				margin-bottom: 24px;
-				max-height: 150px;
-			}
-
-			& .addRecord {
+			& .actionWrapper {
 				display: flex;
-				align-self: center;
-				align-items: center;
 				justify-content: center;
-				border: none;
-				border-radius: 12px;
-				background-color: $black;
-				min-height: 40px;
-				width: 50%;
+				position: relative;
 
-				& > span {
-					color: white;
-					font-family: 'Montserrat', sans-serif;
-					font-weight: 400;
-					font-size: 14px;
+				& .submitRecord {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					border: none;
+					border-radius: 12px;
+					background-color: $black;
+					min-height: 40px;
+					width: 50%;
+
+					& > span {
+						color: white;
+						font-family: 'Montserrat', sans-serif;
+						font-weight: 400;
+						font-size: 14px;
+					}
+				}
+
+				& .close {
+					display: flex;
+					align-self: center;
+					align-items: center;
+					justify-content: center;
+					border: none;
+					border-radius: 12px;
+					background-color: $black-grey;
+					position: absolute;
+					right: 0;
+					bottom: 0;
+					min-height: 40px;
+					width: 40px;
 				}
 			}
-
-			& .close {
-				display: flex;
-				align-self: center;
-				align-items: center;
-				justify-content: center;
-				border: none;
-				border-radius: 12px;
-				background-color: $black-grey;
-				position: absolute;
-				right: 0;
-				bottom: 0;
-				min-height: 40px;
-				width: 40px;
-			}
 		}
+
+		& .show {
+			opacity: 1;
+			z-index: 11;
+		}
+	}
+
+	& .mask {
+		width: 100vw;
+		height: 100vh;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		transition: all 0.3s;
+		z-index: -1;
+	}
+
+	& .showMask {
+		z-index: 1;
+		background-color: rgba(0, 0, 0, 0.4);
 	}
 }
