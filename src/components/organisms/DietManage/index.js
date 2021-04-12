@@ -46,9 +46,7 @@ const DietManage = ({ isLogin, go }) => {
 						weight: { createdAt: null, data: [] },
 					});
 				} else {
-					snapshot.forEach(snap => {
-						setDietInfo({ ...snap.data(), id: snap.id });
-					});
+					snapshot.forEach(snap => setDietInfo({ ...snap.data(), id: snap.id }));
 				}
 			});
 	};
@@ -75,9 +73,18 @@ const DietManage = ({ isLogin, go }) => {
 
 	return (
 		<div className={styles.wrapper}>
-			<ActionBar go={go} left right />
+			<ActionBar go={go} left /* right */ />
 			<h1>Diet Management</h1>
 			<div className={styles.content}>
+				{isLogin &&
+					!dietInfo.breakfast.createdAt &&
+					!dietInfo.lunch.createdAt &&
+					!dietInfo.dinner.createdAt &&
+					!dietInfo.weight.createdAt && (
+						<button type="button" className={styles.statusText} onClick={() => {}}>
+							no data exists
+						</button>
+					)}
 				{isLogin ? (
 					<>
 						{dietInfo.breakfast.createdAt && (
@@ -123,15 +130,6 @@ const DietManage = ({ isLogin, go }) => {
 						please login first
 					</button>
 				)}
-				{isLogin &&
-					!dietInfo.breakfast.createdAt &&
-					!dietInfo.lunch.createdAt &&
-					!dietInfo.dinner.createdAt &&
-					!dietInfo.weight.createdAt && (
-						<button type="button" className={styles.statusText} onClick={() => {}}>
-							no data exists
-						</button>
-					)}
 				{isLogin && (
 					<div className={classnames(styles.addWrapper, add && styles.show)}>
 						<div className={styles.tagsWrapper}>

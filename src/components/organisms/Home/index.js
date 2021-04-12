@@ -14,24 +14,27 @@ import styles from './styles.module.scss';
 const Home = () => {
 	const isLogin = !!firebase.auth().currentUser;
 	const index = useRef(0);
-	const [props, set] = useSprings(3, i => ({
+	const [props, set] = useSprings(2 /* 3 */, i => ({
 		x: i * window.innerWidth,
 		scale: 1,
 		display: 'block',
 		borderRadius: 0,
 	}));
-	const bind = useDrag(({ active, movement: [mx], direction: [xDir], distance, cancel }) => {
-		if (active && distance > window.innerWidth / 2) {
-			cancel((index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, 2)));
-		}
-		set(i => {
-			if (i < index.current - 1 || i > index.current + 1) return { display: 'none' };
-			const x = (i - index.current) * window.innerWidth + (active ? mx : 0);
-			const scale = active ? 1 - distance / window.innerWidth / 2 : 1;
-			const borderRadius = active ? '32px' : 0;
-			return { x, scale, display: 'block', borderRadius };
-		});
-	});
+	const bind = useDrag(
+		({ active, movement: [mx], direction: [xDir], distance, cancel }) => {
+			if (active && distance > window.innerWidth / 2) {
+				cancel((index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, 1 /* 2 */)));
+			}
+			set(i => {
+				if (i < index.current - 1 || i > index.current + 1) return { display: 'none' };
+				const x = (i - index.current) * window.innerWidth + (active ? mx : 0);
+				const scale = active ? 1 - distance / window.innerWidth / 2 : 1;
+				const borderRadius = active ? '32px' : 0;
+				return { x, scale, display: 'block', borderRadius };
+			});
+		},
+		{ axis: 'x' },
+	);
 	const go = direction => {
 		const addon = direction === 'right' ? 1 : -1;
 		set(i => {

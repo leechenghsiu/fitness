@@ -5,28 +5,11 @@ import { EditOutlined, CheckOutlined } from '@ant-design/icons';
 
 import Tags from 'components/atoms/Tags';
 
+import { colorMap } from 'constants/colorMap';
+
 import firebase, { dietRef } from 'services/firebase';
 
 import styles from './styles.module.scss';
-
-const colorMap = {
-	breakfast: {
-		title: 'Breakfast',
-		color: '#5cdae3',
-	},
-	lunch: {
-		title: 'Lunch',
-		color: '#c9b0ee',
-	},
-	dinner: {
-		title: 'Dinner',
-		color: '#eae2b7',
-	},
-	weight: {
-		title: 'Weight',
-		color: '#e0f4b9',
-	},
-};
 
 const MealItem = ({ type, data, id, fetchDietData }) => {
 	const [edit, setEdit] = useState(false);
